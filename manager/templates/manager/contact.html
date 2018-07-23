@@ -1,0 +1,71 @@
+{% extends "manager/base.html" %}
+
+{% block head %}  
+  <title>Contact | Eastgate Estates</title>
+  <meta name="description" content="Get in touch with us">
+  <meta name="keywords" content="Eastgate,contact,get in touch,email">
+
+  <meta name="robots" content="index,follow"/>
+  <style>
+    h2 {
+	  color: #7bc8ff;
+	  font-size: 40px;
+	  margin: 120px 0px 10px
+	}
+    #contact {
+	  background-color: #eaeaea;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	  margin: 0 auto;
+	  padding: 10px;
+	  text-align: center;
+	  width: 60%;
+	}
+    #contact input[type=text], input[type=email], textarea{
+	  border: none;
+	  font-family: sans-serif;
+	  font-size: 20px;
+	  margin: 10px 0px;
+	  outline: 2px solid #eaeaea;
+	  padding: 5px 10px;
+	  width: calc(100% - 24px);
+	}
+	#contact input[type=text]:focus, input[type=email]:focus, textarea:focus{
+	  outline: 2px solid #7bc8ff;
+	}
+	@media screen and (min-width: 1300px){
+	  #contact {
+	    width: 40%;
+	  }
+	@media screen and (max-width: 500px) {
+	  #contact {
+	    width: 85%;
+	  }
+	}
+  </style>
+{% endblock %}
+
+{% block body %}
+    <h2>Get in touch</h2>
+	<p>You can leave us a message here</p>
+    {% if form.errors %}
+        <p>Something went wrong</p>
+		{{ form.errors }}
+    {% endif %}
+    <br>
+
+    <form method="POST" id="contact" action="{% url 'contact' %}">
+        {% csrf_token %}
+		<input type="email" name="email" placeholder="Your email address" required /><br>
+		<textarea name="msg" rows="5" cols="50" placeholder="Your message" required ></textarea>
+
+        <input type="submit" value="Send" class="mybut" />
+        <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+	<br>
+	<p>Alternatively, call </p>
+	<br>
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}

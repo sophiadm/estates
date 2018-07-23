@@ -1,0 +1,63 @@
+﻿{% extends "manager/base.html" %}
+
+{% block head %}  
+  <title>Login | Eastgate Estates</title>
+  <meta name="robots" content="noindex,follow"/>
+  
+  <style>
+    input:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0px 1000px white inset;
+    }
+    #loginform {
+	  background-color: #eaeaea;
+	  padding: 15px;
+	  width: 320px;
+	}
+	h2 {
+	  font-size: 35px;
+    }
+	#loginform input {
+	  border: 0px;
+	  font-size: 16px;
+	  padding: 5px 10px;
+	  width: 300px;
+	}
+	#loginform input[type=submit]{
+	  width: 320px;
+	}
+	
+	@media screen and (max-width: 350px){
+	  #loginform {
+	    width: calc(100% - 20px);
+	  }
+	  #loginform input {
+        width: calc(100% - 70px);
+	  }
+	  #loginform input[type=submit]{
+	    width: calc(100% - 50px);
+	  }
+    }
+
+  </style>
+{% endblock %}
+
+{% block body %}
+    {% if form.errors %}
+	    <br>
+        <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+    <br>
+	<h2>Welcome back!</h2>
+    <form id="loginform" method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        Username:<br>{{ form.username }}
+		<br><br>
+        Password:<br>{{ form.password }}
+        <br><br>
+        <input type="submit" value="login" class="mybut" />
+        <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+{% endblock %}
+
+{% block script %}
+{% endblock %}

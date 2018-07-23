@@ -1,0 +1,70 @@
+{% extends 'manager/base.html' %}
+
+{% block head %}
+  <title>Admin | CFS Aero</title>
+  <meta name="description" content="This page allows admin users to add, ddelete and edit parts"/>
+  <meta name="robots" content="noindex,follow"/>
+  <style>
+  .row td a {
+    color: black;
+	line-height: 1em;
+    text-decoration: none;
+  }
+  /*.row td a:hover {
+    font-size: 1.4em;
+	position: absolute;
+    vertical-align: middle;
+  }*/
+  </style>
+{% endblock %}
+
+{% block body %}
+<br>
+<h1>Welcome to the admin page, {{ user.get_username }}</h1>
+<a href="/new" class="mybut" >Add new part</a>
+<br><br>
+<p>All parts</p>
+<table class="partTable">
+  <tr>
+    <th>Reference</th>
+    <th>Description</th>
+	<th>Price</th>
+	<th>Condition</th>
+	<th>Quantity</th>
+	<th>Location</th>
+  </tr>
+  
+{% for part in parts %}
+  <tr class="row">
+    <td>{{ part.number }}</td>
+	<td>{{ part.description }}</td>
+	<td>&#163;{{ part.price }}</td>
+	<td>{{ part.condition }}</td>	
+	<td>{{ part.quantity }}</td>
+    <td>{{ part.location }}</td>	
+	<td><a href="/parts/{{ part.number }}/{{ part.my_str }}/edit">&#9986;</a></td>
+	<td><a href="/parts/{{ part.number }}/{{ part.my_str }}/remove">&#10006;</a></td>
+  </tr>
+{% endfor %}
+</table>
+<br>
+{% endblock %}
+
+{% block script %}
+rows = document.getElementsByClassName("row");
+stop = 0;
+for (let i=0; i<rows.length; i++){
+  rows[i].addEventListener("click", function(){
+    if(!stop){
+      stop = 1;
+      window.location = '/parts/' + rows[i].getElementsByTagName('td')[0].innerHTML;
+	}
+  });
+  rows[i].addEventListener("touchstart", function(){
+    if(!stop){
+      stop = 1;
+      window.location = '/parts/' + rows[i].getElementsByTagName('td')[0].innerHTML;
+	}
+  });
+}
+{% endblock %}

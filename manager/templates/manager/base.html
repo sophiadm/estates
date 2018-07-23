@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+  <!--Welcome to the Eastgate Estates Website
+  I think it's pretty awesome, but I might be biased, having designed it
+  I used python and django for the backend, in case you're wondering-->
+<head>  
+  <link rel="icon" href="">  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <html lang="en">
+
+  {% block head %}
+  {% endblock %}
+  
+  <style>
+    body {
+	  background-color: black;
+	  font-family: 'Helvetica', 'Arial', sans-serif;
+	  margin: 0px;
+	}
+	.content {
+	  margin-top: 40px;
+	  min-height: calc(100vh - 40px);
+	}
+    #navbar {
+	  background-color: black;
+	  height: 40px;
+	  position: fixed;
+	  top: 0px;
+	  width: 100vw;
+	  z-index: 20;
+	}
+	#navbar .navlink {
+	  color: white;
+	  float: left;
+	  padding: 10px;
+	  text-decoration: none;
+	}
+	#navbar .navlink:hover {
+	  border-bottom-style: solid;
+	  border-bottom-color: #FFC125;
+	}
+	#navbar .dropdown {
+	  float: left;
+	}
+	#navbar .dropcontent {
+	  background-color: black;
+	  display: none;
+	  position: absolute;
+	  top: 40px;
+	}
+	#navbar .dropcontent a{
+	  color: white;
+	  display: block;
+	  float: none;
+	  padding: 10px;
+	  text-align: left;
+	  text-decoration: none;
+	}
+	#navbar .dropdown:hover .dropcontent {
+	  display: block
+	}
+	#navbar .dropdown a{
+	}
+	#footNotes {
+	  text-align: center;
+	  width: 100vw;
+	}	  
+  </style>
+</head>
+
+<body>
+  <nav id="navbar">
+    <a class="navlink{% if request.path == '/' %} selected{% endif %}" href="/">Home</a>
+	<div class="dropdown">
+	  <a class="navlink dropbtn" href="about">About us &#x25BC;</a>
+      <div class="dropcontent">
+	    <a href="/about#whoarewe">Who are we</a>
+	    <a href="/about#whyus">Why rent from us</a>
+	    <a href="/about#whatweoffer">What we offer</a>
+	  </div>
+	</div>
+	<a class="navlink" href="/contact">Properties</a>
+	<a class="navlink" href="/blog">News and guidance</a>
+	<div class="dropdown">
+      <a class="navlink" href="/contact">What others think &#x25BC;</a>   	
+	  <div class="dropcontent">
+	    <a href="/">Frequently asked questions</a>
+	    <a href="/">Reviews and Testimonies</a>
+	  </div>
+    </div>
+	<a class="navlink" href="/contact">Get in touch</a>
+
+    {% if user.is_authenticated %}
+      <a class="navlink" href="/logout/?next={{ request.path|urlencode }}">Logout</a>
+	{% else %}
+	  <a class="navlink{% if request.path == '/login/' %} selected{% endif %}" href="/login">Log in</a>
+    {% endif %}	
+  </nav>
+  
+  <div class="content">
+  {% block body %}
+  {% endblock %}
+  </div>
+	
+  <div id="footNotes">
+    <p id="copyright">&#9400; Eastgate Estates</p>
+
+	<a class="footlink" href="/">Home</a>
+    {% if user.is_authenticated %}
+      <a class="footlink" href="/logout/?next={{ request.path|urlencode }}">Logout</a>
+	{% else %}
+	  <a class="footlink" href="/login">Log in</a>
+    {% endif %}
+	<a class="footlink" href="/contact">Contact us</a>
+  </div>
+
+  
+  <script>  
+
+  {% block script %}
+  {% endblock %}
+  </script>
+</body>
+</html>

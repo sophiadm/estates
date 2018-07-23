@@ -1,0 +1,48 @@
+{% extends 'manager/base.html' %}
+
+{% block head %}
+  <title>about</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <style> 	  
+  body {
+    margin: 0px;
+  }
+  section {
+    height: calc(100vh - 20px);
+	font-size: 25px;
+	padding: 10px;
+	text-align: center;
+	width: calc(100vw - 20px);
+  }
+  #whoarewe {
+    background-color: black;
+	color: white;
+  }
+  #whyus {
+    background-color: white;
+	color: black;
+  }
+  #whatweoffer {
+    background-color: black;
+	color: white;
+  }
+  </style>
+{% endblock %}
+
+{% block body %}
+  <h1>About us</h1>
+  <section id="whoarewe">
+    <h1>Who are we?</h1>
+  </section>
+  <section id="whyus">
+    <h1>Why rent from us</h1>  
+  </section>
+  <section id="whatweoffer">
+    <h1>What we offer</h1>
+  </section>
+{% endblock %}
+
+{% block script %}
+{% endblock %}
