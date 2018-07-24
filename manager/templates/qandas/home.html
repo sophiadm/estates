@@ -1,0 +1,148 @@
+{% extends 'manager/base.html' %}
+
+{% block head %}
+  <title>Blog</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <style>  
+    #intro {
+	  padding-top: 10px;
+	  text-align: center;
+	}
+    #container {
+      height: calc(100% - 194px);
+      left: 20%;
+      position: absolute;
+      width: 60%
+    }
+    .smaller {
+      height: calc(100% - 232px) !important;
+    }      
+    .postbox {
+      background-color: white;
+      border: 2px solid #383838;
+      border-radius: 5px;
+      float: left;
+      height: calc(33% - 10px);
+      line-height: 20px;
+      margin-bottom: 16px;
+      overflow: hidden;
+      padding: 10px;
+      position: relative;
+      transition: 0.5s;
+      width: calc(50% - 32px);
+    }
+    .postbox:nth-of-type(5n-3), .postbox:nth-of-type(5n-1){
+      margin-right: 16px;
+    }
+    .postbox:nth-of-type(5n - 4){
+      width: calc(100% - 24px);
+    }
+    .postbox:hover {
+      background-color: rgba(255, 255, 255, 0);
+    }
+    .postbox p {
+      display: inline-block;
+      line-height: 1.2em;
+      -webkit-margin-before: 8px;
+      -webkit-margin-after: 8px;
+    }
+    .postbox h1 {
+      font-size: 1.2em;
+      line-height: 1.3em
+      -webkit-margin-before: 8px;
+      -webkit-margin-after: 8px;
+    }
+    .pgno {
+      margin-bottom: 12px;
+      position: relative;
+     }
+    @media screen and (max-height: 620px){
+      .postbox {
+        padding-top: 2px;
+      }
+      .postbox p {
+        font-size: 0.9em;
+        line-height: 1.1em;
+      }
+      .postbox h1 {
+        font-size: 1.1em;
+        line-height: 1em;
+      }
+    }
+    @media screen and (max-width: 1000px){
+      .postbox {
+        width: calc(100% - 24px);
+      }
+    }
+
+    @media screen and (max-width: 600px){
+      #container {
+        left: 5%;
+        width: 90%;
+      }
+      .pgno {
+        left: 0px;
+      }
+    } 
+
+  </style>
+{% endblock %}
+
+{% block body %}
+  <header id="intro">
+    <h1>Eastgate Estates Latest News and Guidance</h1>
+    <p>Hey there this is filler text because somene needs to decide what to say</p>
+	{% if user.is_authenticated %}
+      <a href="new">New post</a>
+	{% endif %}
+  </header>
+  <div id="container">
+    {% for page in posts %}
+      <button class="pgno"></button>
+      {% for post in page %}
+        <div class="postbox">
+          {% if user.is_authenticated %}
+            <a href="{{ post.url }}/edit">Edit</a>
+            <a href="{{ post.url }}/delete">Delete</a>
+	      {% endif %}
+          <a href="{{ post.url }}"><h2>{{ post.title }}</h2></a>
+	      <p>{{ post.description }}</p>
+        </div>
+      {% endfor %}
+    {% endfor %}
+  </div>
+{% endblock %}
+
+{% block script %}
+    function changepage(pg){
+      for (var i=0; i<buttons.length; i++){
+        buttons[i].className = "pgno"
+        var disp = "none";
+        if (i == pg){
+          disp = "block";
+        }
+        for (var j=0; j<5; j++){
+          try {
+            boxes[j + i * 5].style.display = disp;
+          }
+          catch(e){
+            break;
+          }
+        }
+      }
+      buttons[pg].className += " active"
+    }
+    window.onload = function (){
+      boxes = document.getElementsByClassName("postbox");
+      buttons = document.getElementsByClassName("pgno");
+
+      for (let i=0; i<buttons.length; i++){
+        buttons[i].innerHTML = i + 1;
+        buttons[i].addEventListener("click", function(){changepage(i)});
+      }
+
+      changepage(0);
+    }
+{% endblock %}

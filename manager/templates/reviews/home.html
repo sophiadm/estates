@@ -1,0 +1,51 @@
+{% extends 'manager/base.html' %}
+
+{% block head %}
+  <title>Blog</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <style>  
+    #intro {
+	  padding-top: 10px;
+	  text-align: center;
+	}
+	.reviewbox {
+	  background-color: white;
+	  color: black;
+	  margin-left: 20px;
+	  padding: 10px 20px;
+	  width: calc(100% - 80px);
+	}
+	.reviewbox .edn {
+	  border-color: black;
+	  color: black;
+	}
+  </style>
+{% endblock %}
+
+{% block body %}
+  <header id="intro">
+    <h1>Eastgate Estates Reviews</h1>
+	{% if user.is_authenticated %}
+      <a href="new" class="edn">New Review</a>
+	  <br><br>
+	{% endif %}
+  </header>
+  {% for review in reviews %}
+    <div id={{ review.pk }} class="reviewbox">
+      {% if user.is_authenticated %}
+        <a href="{{ review.pk }}/edit" class="edn">Edit</a>
+        <a href="{{ review.pk }}/delete" class="edn">Delete</a>
+	  {% endif %}	   
+	  <p>{{ review.name }} says:</p>
+	  <p>{{ review.content }}</p>
+	</div>
+	<br>
+  {% empty %}
+    <p>Sorry, there are no reviews added yet</p>
+  {% endfor %}	
+{% endblock %}
+
+{% block script %}
+{% endblock %}

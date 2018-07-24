@@ -1,0 +1,30 @@
+﻿{% extends 'manager/base.html' %}
+
+{% block head %}
+  <title>Eastgate Estates | {{ post.title }}</title>
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <style>
+    #page {
+	  text-align: center;
+	  width: 100vw;
+	}
+  </style>
+{% endblock %}
+
+{% block body %}
+
+<div id="page">
+  {% if user.is_authenticated %}
+    <a href="edit">Edit</a>
+    <a href="delete">Delete</a>
+  {% endif %}
+
+  <h1>{{ post.title }}</h1>
+  <p>{{ post.description }}</p>
+  <p>{{ post.content }}</p>
+</div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}

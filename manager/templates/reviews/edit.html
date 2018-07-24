@@ -1,0 +1,35 @@
+﻿{% extends 'manager/base.html' %}
+
+{% block head %}  
+  <title>Edit or add a new review</title>
+  <meta name="description" content="Edit a review">
+  <meta name="robots" content="noindex,follow"/>
+  <style>
+    #post-form {
+	  width: 310px;
+	}
+    #post-form input{
+	  font-size: 16px;
+	  padding: 5px 10px;
+	}
+	#post-form textarea {
+	  height: 80vh;
+	  width: 60vw;
+	}
+  </style>
+{% endblock %}
+
+{% block body %}
+  <div>
+    <br>
+    <h1>New Review</h1>
+	<p>{{ msg|safe }}</p>
+    <form method="POST" id="post-form">{% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="mybut" >Save</button>
+    </form>
+  </div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}
