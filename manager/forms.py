@@ -4,7 +4,7 @@ from .models import Property, Review, QandA, BlogPost
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = ('name', 'stars', 'content')
+        fields = ('name', 'content')
 
 class QandAForm(forms.ModelForm):
     class Meta:
@@ -16,6 +16,10 @@ class BlogForm(forms.ModelForm):
         model = BlogPost
         fields = ('title', 'description', 'content')
 
+class PropertyForm(forms.ModelForm):
+    class Meta:
+        model = Property
+        fields = ('photo', 'rent', 'description', 'available')
 
 """
 class EmailForm(forms.Form):

@@ -4,14 +4,16 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Property(models.Model):
-    url = models.CharField(max_length=100)
+    photo = models.ImageField(upload_to='properties/', verbose_name='Picture of a house')
+    description = models.TextField()
+    rent = models.IntegerField()
+    available = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.url
+        return self.pk
 
 class Review(models.Model):
     name = models.CharField(max_length=50)
-    stars = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
     content = models.TextField()
 
     def __str__(self):

@@ -104,12 +104,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+#pass function to all templates
+TEMPLATES[0]['OPTIONS']['context_processors'].append("manager.context_processors.propsexist")
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 
 TIME_ZONE = 'Europe/London'
@@ -125,3 +128,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = 'media/'
+MEDIA_URL = '/media/'

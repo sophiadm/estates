@@ -1,18 +1,10 @@
 ﻿{% extends 'manager/base.html' %}
 
 {% block head %}
-  <title>home</title>
+  <title>Eastgate Estates</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
-
-  <style> 	
-    #title { 
-	  background-color: black;
-	  color: white;
-	  height: 100px;
-	  text-align: center;
-	}
-	#boxes-container {
+  <!--	#boxes-container {
 	  left: 10%;
 	  height: calc(100vh - 140px);
 	  position: absolute;
@@ -33,35 +25,89 @@
 	  width: calc(100% - 60vh + 54px);
 	}
 	#boxes-container > div div{
-	  background-color: black;
 	  height: calc(50% - 30px);
 	  margin-bottom: 20px;
 	  overflow: hidden;
 	  padding: 10px;
 	}
+-->
+  {% load static %}
+  <style> 	
+    #title { 
+	  background-color: black;
+	  color: white;
+	  font-size: 22px;
+	  height: 60px;
+	  padding: 20px 0px;
+	  text-align: center;
+	}
+	#visible-container {
+	  height: calc(100vh - 140px);
+	  text-align: center;
+	}
+	#swirl {
+	  //height: calc(100vw / 6.85);
+	  width: 100%;
+	}
+    #keys { 
+      height: 150px;
+	  margin-top: 20px;
+    }	  
+	#visible-container p{
+	  font-size: 20px;
+	}
+	.infobox {
+	  background-color: white;
+	  border: 2px solid white;
+	  color: #287d4a;
+	  display: block;
+	  float: left;
+	  height: 200px;
+	  margin-left: 30px;
+	  overflow: hidden;
+	  padding: 5px 10px;
+	  postion: absolute;
+	  text-decoration: none;
+	  transition: 0.5s;
+	  width: calc(50% - 66px);
+	}
+	.infobox:hover {
+	  background-color: black;
+	  border: 2px solid #287d4a;
+	}
 	#footNotes {
 	  position: absolute;
-	  top: 100vh;
+	  top: calc(100vh + 230px);
 	}
   </style>
 {% endblock %}
 
 {% block body %}
-  <header id="title"><h1>Eastgate Estates</h1></header>
-  <div id="boxes-container">
-    {% load static %}
-    <img src="{% static "images/house1.png" %}" alt="house"></img>
-    <div>
-      <div>
-	    <p> Check out our latest news article:</p>
-	    <h1>{{ blog.title }}</h1>
-		<p>{{ bloginfo }}</p>
-	  </div>
-	  <div>
-	    <h1>Newest property</h1>
-		<p>Bla bla bla</p>
-	  </div>
+  <header id="title">
+    <h1>Eastgate Estates</h1>	
+  </header>
+  <div id="visible-container">
+    <img id="swirl" src="{% static "images/background2.jpg" %}" alt="swirly background"></img>
+    <img id="keys" src="{% static "images/keys1.png" %}" alt="house"></img>
+    <p>Big enough to cope, small enough to care</p>
   </div>
+  <div>
+  	<a class="infobox">
+	  {% if property == "no props" %}
+	    <p>Random description of the company</p>
+	  {% else %}
+	    <p>Our newest available property</p>
+	    <img src="{{ property.image.url }}" alt="photo of house"></img>
+	    <p>{{ property.description|truncatechars:300 }}</p>
+	  {% endif %}
+	</a>
+    <a class="infobox">
+	  <p>Check out our latest news article:</p>
+	  <h3>{{ blog.title }}</h3>
+	  <p>{{ bloginfo }}</p>
+	</a>
+  </div>
+  <br>
 {% endblock %}
 
 {% block script %}

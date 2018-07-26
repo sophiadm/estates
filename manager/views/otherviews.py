@@ -1,13 +1,20 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from ..models import BlogPost
+from ..models import BlogPost, Property
 
 def home(request):
     blogpost = BlogPost.objects.all().order_by('-created_date')[0]
     description = blogpost.info(300)
 
+    props = Property.objects.all().filter(available=True)
+    if props:
+        prop = props[0]
+    else:
+        prop = "no props"
+
     return render(request, 'manager/home.html', {'blog': blogpost,
-                                                 'bloginfo':description})
+                                                 'bloginfo':description,
+                                                 'property':prop})
 
 def about(request):
     return render(request, 'manager/about.html')
@@ -16,7 +23,7 @@ def contact(request):
     return render(request, 'manager/contact.html')
 
 def no_match(request):
-    return render(request, 'manager/error.html', {'msg': "The page you're looking for doesn't exist"})
+    return render(request, 'manager/error.html', {'msg': "The page you're looking for doesn't exist",})
 
 """
 from django.shortcuts import render, redirect, get_object_or_404

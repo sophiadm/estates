@@ -1,17 +1,21 @@
 {% extends 'manager/base.html' %}
 
 {% block head %}
-  <title>Blog</title>
+  <title>Eastgate Estates | News and Guidance</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
   <style>  
+    body {
+	  background-color: white;
+	  color: black;
+	}
     #intro {
-	  padding-top: 10px;
+	  padding-top: 1px;
 	  text-align: center;
 	}
     #container {
-      height: calc(100% - 194px);
+      height: calc(100% - 118px);
       left: 20%;
       position: absolute;
       width: 60%
@@ -57,7 +61,15 @@
     .pgno {
       margin-bottom: 12px;
       position: relative;
-     }
+    }
+	.edn{ 
+	  border-color: black;
+	  color: black;
+	}
+	#footNotes {
+	  position: absolute;
+	  top: 100vh;
+	}
     @media screen and (max-height: 620px){
       .postbox {
         padding-top: 2px;
@@ -95,17 +107,17 @@
     <h1>Eastgate Estates Latest News and Guidance</h1>
     <p>Hey there this is filler text because somene needs to decide what to say</p>
 	{% if user.is_authenticated %}
-      <a href="new">New post</a>
+      <a href="new" class="edn">New post</a>
 	{% endif %}
   </header>
   <div id="container">
     {% for page in posts %}
-      <button class="pgno"></button>
+      <button class="pgno edn"></button>
       {% for post in page %}
         <div class="postbox">
           {% if user.is_authenticated %}
-            <a href="{{ post.url }}/edit">Edit</a>
-            <a href="{{ post.url }}/delete">Delete</a>
+            <a href="{{ post.url }}/edit"class="edn">Edit</a>
+            <a href="{{ post.url }}/delete" class="edn">Delete</a>
 	      {% endif %}
           <a href="{{ post.url }}"><h2>{{ post.title }}</h2></a>
 	      <p>{{ post.description }}</p>

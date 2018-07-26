@@ -12,10 +12,11 @@
 
   {% block head %}
   {% endblock %}
-  
+
   <style>
     body {
 	  background-color: black;
+	  color: white;
 	  font-family: 'Helvetica', 'Arial', sans-serif;
 	  margin: 0px;
 	}
@@ -38,8 +39,7 @@
 	  text-decoration: none;
 	}
 	#navbar .navlink:hover {
-	  border-bottom-style: solid;
-	  border-bottom-color: #FFC125;
+	  background-color: #287d4a;
 	}
 	#navbar .dropdown {
 	  float: left;
@@ -61,33 +61,55 @@
 	#navbar .dropdown:hover .dropcontent {
 	  display: block
 	}
-	#navbar .dropdown a{
+	#navbar .dropdown a:hover{
+	  background-color: #287d4a;
+	}
+	.edn {
+	  border-color: white;
+	  color: white;
+	  padding: 5px 10px;
+	}
+	.edn:hover {
+	  color: #287d4a;
+	  border-color: #287d4a;
 	}
 	#footNotes {
 	  text-align: center;
 	  width: 100vw;
-	}	  
+	}
+	.footlink {
+	  color: white;
+	}
+	.footlink:hover {
+	  color: #287d4a;
+	}
+	#copyright {
+	  font-style: italics;
+	}
   </style>
+  
 </head>
 
 <body>
   <nav id="navbar">
     <a class="navlink{% if request.path == '/' %} selected{% endif %}" href="/">Home</a>
 	<div class="dropdown">
-	  <a class="navlink dropbtn" href="about">About us &#x25BC;</a>
+	  <a class="navlink dropbtn" href="/about">About us &#x25BC;</a>
       <div class="dropcontent">
 	    <a href="/about#whoarewe">Who are we</a>
 	    <a href="/about#whyus">Why rent from us</a>
 	    <a href="/about#whatweoffer">What we offer</a>
 	  </div>
 	</div>
-	<a class="navlink" href="/contact">Properties</a>
+	{% if propsexist %}
+	  <a class="navlink" href="/properties">Properties</a>
+	{% endif %}
 	<a class="navlink" href="/blog">News and guidance</a>
 	<div class="dropdown">
       <a class="navlink" href="/contact">What others think &#x25BC;</a>   	
 	  <div class="dropcontent">
 	    <a href="/">Frequently asked questions</a>
-	    <a href="/">Reviews and Testimonies</a>
+	    <a href="/reviews">Reviews and Testimonials</a>
 	  </div>
     </div>
 	<a class="navlink" href="/contact">Get in touch</a>
@@ -105,18 +127,19 @@
   </div>
 	
   <div id="footNotes">
-    <p id="copyright">&#9400; Eastgate Estates</p>
-
-	<a class="footlink" href="/">Home</a>
+  	<a class="footlink" href="/">Home</a>
     {% if user.is_authenticated %}
       <a class="footlink" href="/logout/?next={{ request.path|urlencode }}">Logout</a>
 	{% else %}
 	  <a class="footlink" href="/login">Log in</a>
     {% endif %}
 	<a class="footlink" href="/contact">Contact us</a>
-  </div>
 
-  
+    <p>A division of Eastgate Investment Corporation Ltd</p><!--&#9400;-->
+	<p>Eastgate House, 70 Willoughby Lane, London, N17 OSP</p>
+	<p>Tel: 020 8801 7000, Fax: 020 8801 9999 Email: info@eastgateestates</p>
+	<p id="copyright">&#9400; Eastgate Investment Corporation Ltd</p>
+  </div>  
   <script>  
 
   {% block script %}

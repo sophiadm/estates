@@ -9,15 +9,32 @@
   body {
     margin: 0px;
   }
+  header {
+    background-color: white;
+	color: black;
+	font-size: 26px;
+	height: 80px;
+	padding-top: 10px;
+	text-align: center;
+  }
+  header h1{
+    margin: 0px;
+  }
   section {
     height: calc(100vh - 20px);
-	font-size: 25px;
-	padding: 10px;
+	font-size: 22px;
+	padding: 10px 30px;
 	text-align: center;
-	width: calc(100vw - 20px);
+	width: calc(100% - 60px);
+  }
+  section h1 {
+    margin-top: 40px;
+  }
+  section p {
+    font-size: 24px;
   }
   #whoarewe {
-    background-color: black;
+    background: linear-gradient(to right, #000000, #287d4a);	
 	color: white;
   }
   #whyus {
@@ -25,22 +42,59 @@
 	color: black;
   }
   #whatweoffer {
-    background-color: black;
+    background: linear-gradient(to left, #000000, #287d4a);	
 	color: white;
   }
+  .but {
+    border: 2px solid white;
+	color: white;
+	display: block;
+	margin: 0 auto;
+	padding: 5px 10px;
+	text-decoration: none;
+	transition: 1s;
+	width: 200px;
+  }
+  .but:hover {
+    background-color: white;
+	color: black;
+  }
   </style>
+  {% load static %}
 {% endblock %}
 
 {% block body %}
-  <h1>About us</h1>
+  <header>
+    <h1>About Eastgate Estates</h1>
+  </header>
   <section id="whoarewe">
     <h1>Who are we?</h1>
+	<p>Eastgate Estates are a medium sized residential property company based in sunny Tottenham in North London.
+We are professional landlords who own all our own properties, most of which are scattered are North and East London.
+The company is fully vertically integrated anddevelops, owns, maintains and manages an and wide-ranging  porfolio of houses,
+Including all types of residential properties ranging from studio to three bed flats
+and we also have some large houses which are let as shared (HMO) accommodation.
+</p>
+  <img src="{% static "images/house2.png" %}"></img>
   </section>
   <section id="whyus">
-    <h1>Why rent from us</h1>  
+    <h1>Why rent from us</h1>
+	<p>Where we differ from many other landlords is that we regard our tenants as our clients
+and believe that as they are paying us rent every month they are also entitled to a good service, whenever they have a problem with their 
+accommodation they need us to take care of. We pride orselves in the support delivered to clients, something which the company is
+always striving to improve. Clients employ our services as they look to find their feet in a
+new city and environment, as they move across neighbourhoods to be closer to work or that
+all important station, our high level of customer satisfaction from our service and customer care
+is reflected in the low turn-over of our client tenants as most people who rent a property from us stay with us for many years,
+as they appreciate the fact that we keep their home in good condition and quickly attend to any problems</p>
   </section>
   <section id="whatweoffer">
     <h1>What we offer</h1>
+	<p>We are as committed to providing an excellent service to our tenant clients. If you are
+looking for a great property to rent, our specialist team make the entire renting process as
+smooth and straightforward as possible – from searching for your perfect accommodation
+to agreeing rental terms and moving you into your new home.</p>
+  <a href="/reviews" class="but">Reviews and testimonials of our service from past customers</a>
   </section>
 {% endblock %}
 
