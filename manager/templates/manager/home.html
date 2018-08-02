@@ -42,7 +42,7 @@
 	  text-align: center;
 	}
 	#visible-container {
-	  height: calc(100vh - 140px);
+	  height: calc(100vh - 138px);
 	  text-align: center;
 	}
 	#swirl {
@@ -56,6 +56,9 @@
 	#visible-container p{
 	  font-size: 20px;
 	}
+	#info-container {
+	  overflow: hidden;
+	}
 	.infobox {
 	  background-color: white;
 	  border: 2px solid white;
@@ -66,7 +69,6 @@
 	  margin-left: 30px;
 	  overflow: hidden;
 	  padding: 5px 10px;
-	  postion: absolute;
 	  text-decoration: none;
 	  transition: 0.5s;
 	  width: calc(50% - 66px);
@@ -75,10 +77,20 @@
 	  background-color: black;
 	  border: 2px solid #287d4a;
 	}
-	#footNotes {
-	  position: absolute;
-	  top: calc(100vh + 230px);
+	@media screen and (max-width: 500px){
+	  #title{
+	    height: 120px;
+	  }
+	  .infobox {
+	    background-color: white;
+	    border: 2px solid white;
+	    height: 200px;
+	    margin: 20px;
+	    padding: 5px 10px;
+	    width: calc(100% - 62px);
+	  } 
 	}
+
   </style>
 {% endblock %}
 
@@ -91,23 +103,23 @@
     <img id="keys" src="{% static "images/keys1.png" %}" alt="house"></img>
     <p>Big enough to cope, small enough to care</p>
   </div>
-  <div>
-  	<a class="infobox">
-	  {% if property == "no props" %}
+  <div id="info-container">
+	{% if property == "no props" %}
+	  <a class="infobox">
 	    <p>Random description of the company</p>
-	  {% else %}
+	{% else %}
+	  <a class="infobox" href="/properties/{{ property.pk }}">
 	    <p>Our newest available property</p>
 	    <img src="{{ property.image.url }}" alt="photo of house"></img>
 	    <p>{{ property.description|truncatechars:300 }}</p>
 	  {% endif %}
 	</a>
-    <a class="infobox">
+    <a class="infobox" href="/blog/{{ blog.url }}">
 	  <p>Check out our latest news article:</p>
 	  <h3>{{ blog.title }}</h3>
 	  <p>{{ bloginfo }}</p>
 	</a>
   </div>
-  <br>
 {% endblock %}
 
 {% block script %}

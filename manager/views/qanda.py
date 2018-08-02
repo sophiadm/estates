@@ -11,11 +11,11 @@ def home(request):
 @login_required
 def add(request):
     if request.method == "POST":
-        form = Form(request.POST)
+        form = QandAForm(request.POST)
         if form.is_valid():
             faq = form.save(commit=False)
             
-            if QandA.objects.filter(title=title):
+            if QandA.objects.filter(question=form.cleaned_data["question"]):
                 return render(request, 'qandas/edit.html',
                               {'form': form,
                                'msg':'That question has already benn asked <a href="/faqs#'+str(faq.pk)+'">here</a>'})

@@ -1,35 +1,62 @@
 {% extends 'manager/base.html' %}
 
 {% block head %}
-  <title>Blog</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+  <title>Available Properties | Eastgate Estates</title>
+  <meta name="description" content="View our latest properties available to rent">
+  <meta name="keywords" content="flat,flats,apartment,apartments,property,properties,rent">
 
   <style>  
-    
-
+    #intro {
+	  text-align: center;
+	}
+    .postbox {
+	  border-bottom: 2px solid #287d4a;
+	  font-size: 18px;
+	  height: 150px;
+	  line-height: 1.1;
+	  overflow: hidden;
+	  padding: 20px 10px;
+	}
+	.postbox .img-link {
+	  display: block;
+	  float: left;
+	  height: 150px;
+	  width: 150px;
+	}
+	.postbox .edn {
+	  float: right;
+	}
+	@media screen and (max-width: 700px){
+	  .postbox {
+	    height: 300px;
+	  }
+	  .postbox .img-link, .edn {
+	    float: none !important;
+	  }
+	}
   </style>
 {% endblock %}
 
 {% block body %}
   <header id="intro">
-    <h1>Eastgate Estates Latest News and Guidance</h1>
-    <p>Hey there this is filler text because somene needs to decide what to say</p>
+    <br>
+    <h1>Eastgate Estates Available Properties</h1>
 	{% if user.is_authenticated %}
-      <a href="new">New post</a>
+      <a class="edn" href="new">New post</a>
 	{% endif %}
   </header>
   <div id="container">
+    <hr>
     {% for prop in posts %}
       <div class="postbox">
+        <a class="img-link" href="{{ prop.pk }}"><img src={ prop.photo.url }</img></a>
+        <p>Monthly Rent: £{{ prop.rent }}{% if user.is_authenticated %} | Property available: {{ prop.available }}{% endif %}
         {% if user.is_authenticated %}
-          <a href="{{ prop.pk }}/edit">Edit</a>
-          <a href="{{ prop.pk }}/delete">Delete</a>
-		  <p>Property available: {{ prop.available }}</p>
+          <a class="edn" href="{{ prop.pk }}/edit">Edit</a>
+          <a class="edn" href="{{ prop.pk }}/delete">Delete</a>
 	    {% endif %}
-		{% load static %}
-        <!--<a href="{{ prop.pk }}"><img src={ prop.photo.url }</img></a>-->
-	    <p>{{ prop.description }}</p>
+		</p>
+	    <p>{{ prop.description|truncatechars:350 }}</p>
       </div>
     {% endfor %}
   </div>

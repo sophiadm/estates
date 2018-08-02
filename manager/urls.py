@@ -40,12 +40,10 @@ urlpatterns = [
     url(r'reviews/(.*)/edit/$', views.review.edit, name='reviewsedit'),
     url(r'reviews/(.*)/delete/$', views.review.delete, name='reviewsdel'),
 
-    #url(r'faqs/$', views.faqs.home, name='faqshome'),
-    #url(r'faqs/new/$', views.faqs.add, name='faqsadd'),
-    #url(r'faqs/(.*)/edit/$', views.faqs.edit, name='faqsedit'),
-    #url(r'faqs/(.*)/delete/$', views.faqs.delete, name='faqsdel'),
-
-    #url(r'^contact/$', views.contact, name='contact'),
+    url(r'faqs/$', views.qanda.home, name='faqshome'),
+    url(r'faqs/new/$', views.qanda.add, name='faqsadd'),
+    url(r'faqs/(.*)/edit/$', views.qanda.edit, name='faqsedit'),
+    url(r'faqs/(.*)/delete/$', views.qanda.delete, name='faqsdel'),
 
     url(r'^.*/$', views.no_match)
 ]

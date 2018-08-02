@@ -8,11 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <html lang="en">
-
-  {% block head %}
-  {% endblock %}
-
+  <html lang="en"/>
   <style>
     body {
 	  background-color: black;
@@ -20,13 +16,17 @@
 	  font-family: 'Helvetica', 'Arial', sans-serif;
 	  margin: 0px;
 	}
+	*::selection {
+	  background-color: #adadad;
+	  color: white;
+	}
 	.content {
-	  margin-top: 40px;
-	  min-height: calc(100vh - 40px);
+	  margin-top: 38px;
+	  min-height: calc(100vh - 38px);
 	}
     #navbar {
 	  background-color: black;
-	  height: 40px;
+	  height: 38px;
 	  position: fixed;
 	  top: 0px;
 	  width: 100vw;
@@ -35,11 +35,21 @@
 	#navbar .navlink {
 	  color: white;
 	  float: left;
+	  height: 18px;
 	  padding: 10px;
 	  text-decoration: none;
 	}
 	#navbar .navlink:hover {
 	  background-color: #287d4a;
+	  color: white;
+	}
+	#navbar .selected {
+	  background-color: white;
+	  color: black;
+	}
+	#navbar .right {
+	  float: right;
+	  margin-right: 15px;
 	}
 	#navbar .dropdown {
 	  float: left;
@@ -48,7 +58,7 @@
 	  background-color: black;
 	  display: none;
 	  position: absolute;
-	  top: 40px;
+	  top: 38px;
 	}
 	#navbar .dropcontent a{
 	  color: white;
@@ -59,42 +69,73 @@
 	  text-decoration: none;
 	}
 	#navbar .dropdown:hover .dropcontent {
-	  display: block
+	  display: block;
 	}
 	#navbar .dropdown a:hover{
 	  background-color: #287d4a;
 	}
 	.edn {
-	  border-color: white;
+	  background-color: transparent;
+	  border: 1px solid white;
 	  color: white;
 	  padding: 5px 10px;
+	  text-decoration: none;
+	  transition: 0.5s;
 	}
 	.edn:hover {
-	  color: #287d4a;
-	  border-color: #287d4a;
+	  color: #287d4a !important;
+	  border-color: #287d4a !important;
 	}
 	#footNotes {
 	  text-align: center;
-	  width: 100vw;
+	  width: 100%;
 	}
 	.footlink {
 	  color: white;
+	  margin-left: 10px;
 	}
 	.footlink:hover {
 	  color: #287d4a;
 	}
 	#copyright {
-	  font-style: italics;
+	  font-style: italic;
+	}
+	@media screen and (max-width: 850px){
+	  .hideonphone{
+	    display: none;
+	  }
+	}
+	@media screen and (max-width: 450px){
+	  #navbar{
+	    height: 76px;
+	  }
+	  #navbar .navlink {
+	    text-align: center;
+	    width: calc(33vw - 24px);
+	  }
+	  #navbar .right .navlink {
+	    width: calc(50vw - 28px);
+	  }
+	  #navbar .right {
+	    float: left;
+	  }
+	  .content {
+	    margin-top: 76px;
+	    min-height: calc(100vh - 76px);
+      }
 	}
   </style>
-  
+
+  {% block head %}
+  {% endblock %}
+
 </head>
 
 <body>
   <nav id="navbar">
     <a class="navlink{% if request.path == '/' %} selected{% endif %}" href="/">Home</a>
 	<div class="dropdown">
-	  <a class="navlink dropbtn" href="/about">About us &#x25BC;</a>
+	  <a class="navlink dropbtn{% if request.path == '/about/' %} selected{% endif %}" href="/about">About us &#x25BC;</a>
       <div class="dropcontent">
 	    <a href="/about#whoarewe">Who are we</a>
 	    <a href="/about#whyus">Why rent from us</a>
@@ -102,23 +143,24 @@
 	  </div>
 	</div>
 	{% if propsexist %}
-	  <a class="navlink" href="/properties">Properties</a>
+	  <a class="navlink{% if request.path == '/properties/' %} selected{% endif %}"" href="/properties">Properties</a>
 	{% endif %}
-	<a class="navlink" href="/blog">News and guidance</a>
+	<a class="navlink hideonphone{% if request.path == '/blog/' %} selected{% endif %}"" href="/blog">News and guidance</a>
 	<div class="dropdown">
-      <a class="navlink" href="/contact">What others think &#x25BC;</a>   	
+      <a class="navlink hideonphone">What others think &#x25BC;</a>   	
 	  <div class="dropcontent">
-	    <a href="/">Frequently asked questions</a>
-	    <a href="/reviews">Reviews and Testimonials</a>
+	    <a href="/faqs"{% if request.path == '/faqs/' %} class="selected"{% endif %}>Frequently asked questions</a>
+	    <a href="/reviews"{% if request.path == '/reviews/' %} class="selected"{% endif %}>Reviews and Testimonials</a>
 	  </div>
     </div>
-	<a class="navlink" href="/contact">Get in touch</a>
-
-    {% if user.is_authenticated %}
-      <a class="navlink" href="/logout/?next={{ request.path|urlencode }}">Logout</a>
-	{% else %}
-	  <a class="navlink{% if request.path == '/login/' %} selected{% endif %}" href="/login">Log in</a>
-    {% endif %}	
+	<div class="right">
+	  <a class="navlink {% if request.path == '/contact/' %} selected{% endif %}" href="/contact">Get in touch</a>
+      {% if user.is_authenticated %}
+        <a class="navlink" href="/logout/?next={{ request.path|urlencode }}">Logout</a>
+	  {% else %}
+	    <a class="navlink {% if request.path == '/login/' %} selected{% endif %}" href="/login">Log in</a>
+      {% endif %}	
+	</div>
   </nav>
   
   <div class="content">
@@ -127,13 +169,20 @@
   </div>
 	
   <div id="footNotes">
+    <br>
   	<a class="footlink" href="/">Home</a>
+	<a class="footlink" href="/about">About us</a>
+	{% if propsexist %}
+	  <a class="footlink" href="/properties">Properties</a>
+	{% endif %}
+	<a class="footlink" href="/faqs">Frequently asked questions</a>
+	<a class="footlink" href="/reviews">Reviews and Testimonials</a>
+	<a class="footlink" href="/contact">Contact us</a>
     {% if user.is_authenticated %}
       <a class="footlink" href="/logout/?next={{ request.path|urlencode }}">Logout</a>
 	{% else %}
 	  <a class="footlink" href="/login">Log in</a>
     {% endif %}
-	<a class="footlink" href="/contact">Contact us</a>
 
     <p>A division of Eastgate Investment Corporation Ltd</p><!--&#9400;-->
 	<p>Eastgate House, 70 Willoughby Lane, London, N17 OSP</p>

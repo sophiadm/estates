@@ -1,10 +1,9 @@
 {% extends 'manager/base.html' %}
 
 {% block head %}
-  <title>about</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
-
+  <title>About Us | Eastgate Estates</title>
+  <meta name="description" content="We are a leading supplier of property for rent in North and East London who pride ourselves in the personal support we deliver to tenant clients ">
+  <meta name="keywords" content="About,Easgate,Estates,Property,Rent,London,North London,East London,">
   <style> 	  
   body {
     margin: 0px;
@@ -12,12 +11,12 @@
   header {
     background-color: white;
 	color: black;
-	font-size: 26px;
 	height: 80px;
 	padding-top: 10px;
 	text-align: center;
   }
   header h1{
+    font-size: 52px;
     margin: 0px;
   }
   section {
@@ -32,6 +31,7 @@
   }
   section p {
     font-size: 24px;
+	line-height: 30px;
   }
   #whoarewe {
     background: linear-gradient(to right, #000000, #287d4a);	
@@ -59,6 +59,41 @@
     background-color: white;
 	color: black;
   }
+  @media screen and (min-width: 1600px){
+    section p {
+	  font-size: 30px;
+	  line-height: 36px;
+	}
+  } 
+  @media screen and (max-width: 760px){
+    header h1 {
+	  font-size: 40px;
+    }
+    section p {
+	  font-size: 18px;
+	  line-height: 22px;
+	}
+  }
+  @media screen and (max-width: 560px){
+    header h1 {
+	  font-size: 34px;
+	}
+    #whoarewe img {
+	  height: 200px;
+	}
+	#whyus img {
+	  height: 100px;
+	}
+	section h1 {
+	  font-size:
+	  margin-bottom: 5px;
+	}
+  }
+  @media screen and (max-width: 365px){
+    section img {
+	  display: none;
+	}
+  }
   </style>
   {% load static %}
 {% endblock %}
@@ -69,31 +104,32 @@
   </header>
   <section id="whoarewe">
     <h1>Who are we?</h1>
-	<p>Eastgate Estates are a medium sized residential property company based in sunny Tottenham in North London.
-We are professional landlords who own all our own properties, most of which are scattered are North and East London.
-The company is fully vertically integrated anddevelops, owns, maintains and manages an and wide-ranging  porfolio of houses,
-Including all types of residential properties ranging from studio to three bed flats
-and we also have some large houses which are let as shared (HMO) accommodation.
-</p>
+	<p>Eastgate Estates was established nearly forty years ago. 
+    The company, based in Northumberland Park, owns, manages and maintains a wide range of individual properties available for rent
+    across North and East London. Our friendly team is ‘big enough to cope, small enough to care’.
+    We develop and maintain all types of residential properties ranging from studio to three bed flats
+    and we also have some large houses which are let as shared (HMO) accommodation.
+    </p>
   <img src="{% static "images/house2.png" %}"></img>
   </section>
   <section id="whyus">
     <h1>Why rent from us</h1>
-	<p>Where we differ from many other landlords is that we regard our tenants as our clients
-and believe that as they are paying us rent every month they are also entitled to a good service, whenever they have a problem with their 
-accommodation they need us to take care of. We pride orselves in the support delivered to clients, something which the company is
-always striving to improve. Clients employ our services as they look to find their feet in a
-new city and environment, as they move across neighbourhoods to be closer to work or that
-all important station, our high level of customer satisfaction from our service and customer care
-is reflected in the low turn-over of our client tenants as most people who rent a property from us stay with us for many years,
-as they appreciate the fact that we keep their home in good condition and quickly attend to any problems</p>
+	<p>Eastgate Estates prides itself on the all-round service that we deliver to our client tenants. 
+	We know our clients by name and our head office staff will recognise you when you call in to discuss any matter
+	relating to your accommodation. It is this level of personal attention that sets us aside from other companies
+	and makes dealing with Eastgate such a pleasure. We know that things happen from time to time and of course,
+	we are measured on how we respond to matters as they arise. Our own in-house maintenance team is available throughout the week
+	and will respond to any situation in order of priority.
+    </p>
+  <img src="{% static "images/house3.jpg" %}"></img>
   </section>
   <section id="whatweoffer">
     <h1>What we offer</h1>
-	<p>We are as committed to providing an excellent service to our tenant clients. If you are
-looking for a great property to rent, our specialist team make the entire renting process as
-smooth and straightforward as possible – from searching for your perfect accommodation
-to agreeing rental terms and moving you into your new home.</p>
+	<p>The portfolio of rental properties ranges from 1 to 3 bedroomed flats, 1 to 4 bedroomed houses
+	as well as single or double rooms in flat and house shares. Properties in North and East London are well situated
+	for easy access to London’s extensive transport network, perfect for travelling across town for work and pleasure.
+	Each individual property is allocated into an ongoing, planned maintenance programme designed to maintain the condition of your London home.
+    </p>
   <a href="/reviews" class="but">Reviews and testimonials of our service from past customers</a>
   </section>
 {% endblock %}
