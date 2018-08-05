@@ -2,9 +2,12 @@
 
 {% block head %}  
   <title>Edit or add a new post</title>
-  <meta name="description" content="Edit a blog post">
+  <meta name="description" content="Edit a frequently asked question">
   <meta name="robots" content="noindex,follow"/>
   <style>
+    #page {
+	  padding: 20px;
+	}
     #post-form {
 	  width: 310px;
 	}
@@ -13,16 +16,15 @@
 	  padding: 5px 10px;
 	}
 	#post-form textarea {
-	  height: 80vh;
-	  width: 60vw;
+	  height: 200px;
 	}
   </style>
 {% endblock %}
 
 {% block body %}
-  <div>
+  <div id="page">
     <br>
-    <h1>New part</h1>
+    <h1>New FAQ</h1>
 	<p>{{ msg|safe }}</p>
     <form method="POST" id="post-form">{% csrf_token %}
       {{ form.as_p }}

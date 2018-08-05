@@ -123,6 +123,12 @@ USE_L10N = True
 
 USE_TZ = True
 
+#Info for sendmail
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'sophiadm'
+EMAIL_HOST_PASSWORD = 'Incorrect29'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/

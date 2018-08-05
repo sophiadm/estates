@@ -5,7 +5,14 @@
   <meta name="description" content="Edit a blog post">
   <meta name="robots" content="noindex,follow"/>
   <style>
+    #page {
+	  padding: 0px 20px;
+	}
+	#page h1 {
+	  text-align: center;
+	}
     #post-form {
+	  margin-left: calc(50% - 155px);
 	  width: 310px;
 	}
     #post-form input{
@@ -13,15 +20,13 @@
 	  padding: 5px 10px;
 	}
 	#post-form textarea {
-	  height: 80vh;
-	  width: 60vw;
+	  height: 300px;
 	}
   </style>
 {% endblock %}
 
 {% block body %}
-  <div>
-    <br>
+  <div id="page">
     <h1>New property</h1>
 	<p>{{ msg|safe }}</p>
     <form method="post" enctype="multipart/form-data" id="post-form">

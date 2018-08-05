@@ -1,9 +1,9 @@
 {% extends 'manager/base.html' %}
 
 {% block head %}
-  <title>Blog</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+  <title>Reviews and Testimonials | Eastgate Estates</title>
+  <meta name="description" content="Read reviews and testimonials of the excellent service here at Eastgate.">
+  <meta name="keywords" content="Eastgate,Estates,Reviews,Testimonials,Property,House,Flat,Apartment,Rent,London">
 
   <style>  
     #intro {
@@ -13,6 +13,7 @@
 	.reviewbox {
 	  background-color: white;
 	  color: black;
+	  font-size: 18px;
 	  margin-left: 20px;
 	  padding: 10px 20px;
 	  width: calc(100% - 80px);
@@ -21,12 +22,18 @@
 	  border-color: black;
 	  color: black;
 	}
+	.reviewbox .who {
+	  font-weight: bold;
+	}
+	.reviewbox .what {
+	  color: #287d4a;
+	}
   </style>
 {% endblock %}
 
 {% block body %}
   <header id="intro">
-    <h1>Eastgate Estates Reviews</h1>
+    <h1>Eastgate Estates Reviews and Testimonials</h1>
 	{% if user.is_authenticated %}
       <a href="new" class="edn">New Review</a>
 	  <br><br>
@@ -38,8 +45,8 @@
         <a href="{{ review.pk }}/edit" class="edn">Edit</a>
         <a href="{{ review.pk }}/delete" class="edn">Delete</a>
 	  {% endif %}	   
-	  <p>{{ review.name }} says:</p>
-	  <p>{{ review.content }}</p>
+	  <p class="who">{{ review.name }} says:</p>
+	  <p class="what">{{ review.content }}</p>
 	</div>
 	<br>
   {% empty %}

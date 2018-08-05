@@ -41,11 +41,11 @@
 	}
 	#navbar .navlink:hover {
 	  background-color: #287d4a;
-	  color: white;
+	  color: white !important;
 	}
 	#navbar .selected {
 	  background-color: white;
-	  color: black;
+	  color: black !important;
 	}
 	#navbar .right {
 	  float: right;
@@ -73,6 +73,7 @@
 	}
 	#navbar .dropdown a:hover{
 	  background-color: #287d4a;
+	  color: white !important;
 	}
 	.edn {
 	  background-color: transparent;
@@ -87,6 +88,7 @@
 	  border-color: #287d4a !important;
 	}
 	#footNotes {
+	  border-top: 1px solid white;
 	  text-align: center;
 	  width: 100%;
 	}
@@ -175,7 +177,8 @@
 	{% if propsexist %}
 	  <a class="footlink" href="/properties">Properties</a>
 	{% endif %}
-	<a class="footlink" href="/faqs">Frequently asked questions</a>
+	<a class="footlink" href="/faqs">News and Guidance</a>
+	<a class="footlink" href="/faqs">Frequently Asked Questions</a>
 	<a class="footlink" href="/reviews">Reviews and Testimonials</a>
 	<a class="footlink" href="/contact">Contact us</a>
     {% if user.is_authenticated %}
@@ -186,7 +189,7 @@
 
     <p>A division of Eastgate Investment Corporation Ltd</p><!--&#9400;-->
 	<p>Eastgate House, 70 Willoughby Lane, London, N17 OSP</p>
-	<p>Tel: 020 8801 7000, Fax: 020 8801 9999 Email: info@eastgateestates</p>
+	<p>Tel: 020 8801 7000, Fax: 020 8801 9999, Email: info@eastgateestates</p>
 	<p id="copyright">&#9400; Eastgate Investment Corporation Ltd</p>
   </div>  
   <script>  

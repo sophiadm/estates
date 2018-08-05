@@ -2,29 +2,54 @@
 
 {% block head %}
   <title>Available Properties | Eastgate Estates</title>
-  <meta name="description" content="View our latest properties available to rent">
-  <meta name="keywords" content="flat,flats,apartment,apartments,property,properties,rent">
+  <meta name="description" content="View our latest properties available for rent across North and East London">
+  <meta name="keywords" content="flat,flats,apartment,apartments,property,properties,rent,london,east london, north london">
 
   <style>  
     #intro {
 	  text-align: center;
 	}
     .postbox {
-	  border-bottom: 2px solid #287d4a;
+	  background-color: #287d4a;
 	  font-size: 18px;
 	  height: 150px;
 	  line-height: 1.1;
 	  overflow: hidden;
 	  padding: 20px 10px;
 	}
+	.postbox:nth-of-type(2n){
+	  background-color: white;
+	  color: black;
+	}
+	.postbox .notedn {
+	  border: 1px solid black;
+	  color: black;
+	  float: right;
+	  margin-right: 2px;
+	  padding: 5px 10px;
+	  text-decoration: none;
+	  transition: 0.5s;
+	}
+	.notedn:hover {
+	  background-color: black;
+	  color: white;
+	}
 	.postbox .img-link {
 	  display: block;
 	  float: left;
 	  height: 150px;
-	  width: 150px;
+	  padding-left: 10px;
 	}
-	.postbox .edn {
-	  float: right;
+	.postbox .img-link img {
+	  cursor: pointer;
+	  height: 150px;
+	  transition: 0.5s;
+	}
+	.postbox .img-link img:hover {
+	  filter: greyscale(20%);
+	}
+	.postbox span {
+	  display: none;
 	}
 	@media screen and (max-width: 700px){
 	  .postbox {
@@ -32,6 +57,14 @@
 	  }
 	  .postbox .img-link, .edn {
 	    float: none !important;
+	  }
+	}
+	@media screen and (max-width: 550px){
+      .postbox span {
+	    display: block;
+	  }
+	  .postbox {
+	    height: 350px;
 	  }
 	}
   </style>
@@ -42,18 +75,19 @@
     <br>
     <h1>Eastgate Estates Available Properties</h1>
 	{% if user.is_authenticated %}
-      <a class="edn" href="new">New post</a>
+      <a class="edn" href="new">New property</a>
+	  <br><br>
 	{% endif %}
   </header>
   <div id="container">
-    <hr>
     {% for prop in posts %}
       <div class="postbox">
-        <a class="img-link" href="{{ prop.pk }}"><img src={ prop.photo.url }</img></a>
+        <a class="img-link" href="{{ prop.pk }}"><img src="{{ prop.photo.url }}"</img></a>
         <p>Monthly Rent: £{{ prop.rent }}{% if user.is_authenticated %} | Property available: {{ prop.available }}{% endif %}
         {% if user.is_authenticated %}
-          <a class="edn" href="{{ prop.pk }}/edit">Edit</a>
-          <a class="edn" href="{{ prop.pk }}/delete">Delete</a>
+		  <span><br></span>
+		  <a class="notedn" href="{{ prop.pk }}/delete">Delete</a>
+          <a class="notedn" href="{{ prop.pk }}/edit">Edit</a>
 	    {% endif %}
 		</p>
 	    <p>{{ prop.description|truncatechars:350 }}</p>

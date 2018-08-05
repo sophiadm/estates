@@ -5,24 +5,37 @@
   <meta name="description" content="Edit a blog post">
   <meta name="robots" content="noindex,follow"/>
   <style>
+    h1 {
+	  text-align: center;
+	}
     #post-form {
-	  width: 310px;
+	  font-size: 16px;
+	  margin-left: 10%;
+	  width: 80%
 	}
     #post-form input{
 	  font-size: 16px;
 	  padding: 5px 10px;
+	  width: calc(100% - 63px);
 	}
 	#post-form textarea {
-	  height: 80vh;
-	  width: 60vw;
-	}
+	  font-size: 16px;
+	  padding: 5px 10px;
+	  width: calc(100% - 20px);
+	}  
+	#id_description {
+      height: 100px;
+    }
+	#id_content {
+      height: 600px;
+    }
   </style>
 {% endblock %}
 
 {% block body %}
   <div>
     <br>
-    <h1>New part</h1>
+    <h1>Add or edit a blog post</h1>
 	<p>{{ msg|safe }}</p>
     <form method="POST" id="post-form">{% csrf_token %}
       {{ form.as_p }}

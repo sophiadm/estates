@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from ..models import BlogPost, Property
-
+from django.core.mail import send_mail
+from ..forms import EmailForm
 def home(request):
     blogpost = BlogPost.objects.all().order_by('-created_date')[0]
     description = blogpost.info(300)
@@ -20,7 +21,26 @@ def about(request):
     return render(request, 'manager/about.html')
 
 def contact(request):
-    return render(request, 'manager/contact.html')
+    if request.method == 'POST':
+        form = EmailForm(request.POST)
+        
+        if form.is_valid():
+            mail = form.cleaned_data
+            
+            send_mail(
+                'Automated Eastgate Estates Website Enquiry',
+                mail['msg'],
+                mail['email'],
+                [''],
+                fail_silently = False,
+            )
+            
+            return render(request, 'manager/error.html', {'msg': "Thanks, we will be in touch as soon as possible"})
+
+    else:
+        form = EmailForm()
+
+    return render(request, 'manager/contact.html', {'form': form})    
 
 def no_match(request):
     return render(request, 'manager/error.html', {'msg': "The page you're looking for doesn't exist",})

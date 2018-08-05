@@ -2,8 +2,8 @@
 
 {% block head %}
   <title>Eastgate Estates | {{ post.title }}</title>
-  <meta name="description" content="" />
-  <meta name="keywords" content="" />
+  <meta name="description" content="{{ post.description }}" />
+  <meta name="keywords" content="Eastgate,Estates,Property,Rent,London,North London,East London" />
   <style>
     #page {
 	  background-color: white;
@@ -33,6 +33,9 @@
 {% block body %}
 
 <div id="page">
+  <br>
+  <a href="/blog" class="edn">&#8592; View all</a>
+  <br>
 {% if user.is_authenticated %}
   <br>
   <a href="edit" class="edn">Edit</a>

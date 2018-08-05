@@ -5,17 +5,22 @@
   <meta name="robots" content="noindex,follow"/>
   
   <style>
+    #page {
+	  text-align: center;
+	}
+	h2 {
+	  font-size: 35px;
+    }
     input:-webkit-autofill {
       -webkit-box-shadow: 0 0 0px 1000px white inset;
     }
     #loginform {
 	  background-color: #eaeaea;
+	  color: black;
+	  margin: 0 auto;
 	  padding: 15px;
 	  width: 320px;
 	}
-	h2 {
-	  font-size: 35px;
-    }
 	#loginform input {
 	  border: 0px;
 	  font-size: 16px;
@@ -25,7 +30,9 @@
 	#loginform input[type=submit]{
 	  width: 320px;
 	}
-	
+	#loginform input[type=submit]:hover {
+	  background-color: #287d4a;
+	}
 	@media screen and (max-width: 350px){
 	  #loginform {
 	    width: calc(100% - 20px);
@@ -42,6 +49,7 @@
 {% endblock %}
 
 {% block body %}
+  <div id="page">
     {% if form.errors %}
 	    <br>
         <p>Your username and password didn't match. Please try again.</p>
@@ -57,6 +65,7 @@
         <input type="submit" value="login" class="mybut" />
         <input type="hidden" name="next" value="{{ next }}" />
     </form>
+  </div>
 {% endblock %}
 
 {% block script %}

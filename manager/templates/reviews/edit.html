@@ -5,6 +5,9 @@
   <meta name="description" content="Edit a review">
   <meta name="robots" content="noindex,follow"/>
   <style>
+    #page {
+	  padding-left: 20px;
+	}
     #post-form {
 	  width: 310px;
 	}
@@ -13,14 +16,20 @@
 	  padding: 5px 10px;
 	}
 	#post-form textarea {
-	  height: 80vh;
-	  width: 60vw;
+	  font-size: 16px;
+	  height: 300px;
+	  width: 500px;
+	}
+	@media screen and (max-width: 570px){
+	  #post-form textarea {
+	    width: calc(100vw - 60px);
+	  }
 	}
   </style>
 {% endblock %}
 
 {% block body %}
-  <div>
+  <div id="page">
     <br>
     <h1>New Review</h1>
 	<p>{{ msg|safe }}</p>

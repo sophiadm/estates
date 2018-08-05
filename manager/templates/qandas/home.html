@@ -2,8 +2,8 @@
 
 {% block head %}
   <title>Eastgate Estates Frequently Asked Questions</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+  <meta name="description" content="Read answers to the most frequently asked questions about Eastgate Estates and our properties">
+  <meta name="keywords" content="FAQ,Questions,Eastgate,Estates,Property,London,North London,East London">
 
   <style>  
     #intro {
@@ -13,39 +13,30 @@
 	.faqbox {
 	  padding: 40px 20px 0px 20px;
 	}
+	.faqbox p{
+	  font-size: 18px;
+	}
+	.question {
+	  color: #287d4a;
+	  font-weight: bold;
+	}
   </style>
 {% endblock %}
 
 {% block body %}
   <header id="intro">
     <h1>Eastgate Estates Frequently Asked Questions</h1>
-    <p>Hey there this is filler text because somene needs to decide what to say</p>
 	{% if user.is_authenticated %}
       <a href="new" class="edn">New FAQ</a>
 	{% endif %}
   </header>
-  <div id="container">
-    {% for page in posts %}
-      <button class="pgno"></button>
-      {% for post in page %}
-        <div class="postbox">
-          {% if user.is_authenticated %}
-            <a href="{{ post.url }}/edit" class="edn">Edit</a>
-            <a href="{{ post.url }}/delete" class="edn">Delete</a>
-	      {% endif %}
-          <a href="{{ post.url }}"><h2>{{ post.title }}</h2></a>
-	      <p>{{ post.description }}</p>
-        </div>
-      {% endfor %}
-    {% endfor %}
-  </div>
   {% for faq in faqs %}
     <div id="{{ faq.pk }}" class="faqbox">
       {% if user.is_authenticated %}
         <a href="{{ faq.pk }}/edit" class="edn">Edit</a>
         <a href="{{ faq.pk }}/delete" class="edn">Delete</a>
 	  {% endif %}	   
-	  <p>{{ faq.question }}</p>
+	  <p class="question">{{ faq.question }}</p>
 	  <p>{{ faq.answer }}</p>
 	</div>	  
   {% endfor %}

@@ -17,7 +17,7 @@ def see(request, pk):
     if not posts:
         return render(request, 'manager/error.html', {'msg': "The property you're looking for doesn't exist"})
 
-    if posts[0].available == False:
+    if posts[0].available == False and not request.user.is_authenticated:
         return render(request, 'manager/error.html', {'msg': "Unfortunately, the property you are looking for is no longer available to rent"})
         
     return render(request, 'properties/view.html', {'property': posts[0]})

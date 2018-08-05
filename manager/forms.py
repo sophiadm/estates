@@ -21,9 +21,6 @@ class PropertyForm(forms.ModelForm):
         model = Property
         fields = ('photo', 'rent', 'description', 'available')
 
-"""
 class EmailForm(forms.Form):
-    part = forms.CharField(label='Part Number', max_length=50)
-    email = forms.EmailField(label='Your email')
+    email = forms.EmailField(label='Your email address')
     msg = forms.CharField(widget=forms.Textarea, label="Message")
-"""

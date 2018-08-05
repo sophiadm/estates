@@ -7,34 +7,48 @@
 
   <meta name="robots" content="index,follow"/>
   <style>
+    #page {
+	  font-size: 18px;
+	  padding-top: 1px;
+	  text-align: center;
+	}
     h2 {
-	  color: #7bc8ff;
+	  color: #287d4a;
 	  font-size: 40px;
-	  margin: 120px 0px 10px
 	}
     #contact {
 	  background-color: #eaeaea;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	  margin: 0 auto;
 	  padding: 10px;
 	  text-align: center;
-	  width: 60%;
+	  width: 70%;
 	}
-    #contact input[type=text], input[type=email], textarea{
+    #contact input[type=email], textarea{
 	  border: none;
-	  font-family: sans-serif;
-	  font-size: 20px;
+	  font-family: 'Helvetica', 'Arial', sans-serif;
+	  font-size: 18px;
 	  margin: 10px 0px;
 	  outline: 2px solid #eaeaea;
 	  padding: 5px 10px;
 	  width: calc(100% - 24px);
 	}
-	#contact input[type=text]:focus, input[type=email]:focus, textarea:focus{
-	  outline: 2px solid #7bc8ff;
+	#contact input[type=email]:focus, textarea:focus{
+	  outline: 2px solid #287d4a;
+	}
+	.mybut {
+	  background-color: #287d4a;
+	  border: 0px;
+	  color: white;
+	  cursor: pointer;
+	  font-size: 18px;
+	  padding: 5px 10px;
+	}
+	.mybut:hover {
+	  background-color: black;
 	}
 	@media screen and (min-width: 1300px){
 	  #contact {
-	    width: 40%;
+	    width: 60%;
 	  }
 	@media screen and (max-width: 500px) {
 	  #contact {
@@ -45,6 +59,7 @@
 {% endblock %}
 
 {% block body %}
+  <div id="page">
     <h2>Get in touch</h2>
 	<p>You can leave us a message here</p>
     {% if form.errors %}
@@ -56,15 +71,14 @@
     <form method="POST" id="contact" action="{% url 'contact' %}">
         {% csrf_token %}
 		<input type="email" name="email" placeholder="Your email address" required /><br>
-		<textarea name="msg" rows="5" cols="50" placeholder="Your message" required ></textarea>
+		<textarea name="msg" rows="10" cols="50" placeholder="Your message" required ></textarea>
 
         <input type="submit" value="Send" class="mybut" />
         <input type="hidden" name="next" value="{{ next }}" />
     </form>
 	<br>
-	<p>Alternatively, call </p>
-	<br>
-
+	<p>Alternatively, call 020 8801 7000, or email us directly at info@eastgateestates.co.uk</p>
+  </div>
 {% endblock %}
 
 {% block script %}

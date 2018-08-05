@@ -1,27 +1,71 @@
 ﻿{% extends 'manager/base.html' %}
 
 {% block head %}
-  <title>Eastgate Estates Property}}</title>
-  <meta name="description" content="" />
-  <meta name="keywords" content="" />
+  <title>Eastgate Estates Property Available For Rent</title>
+  <meta name="description" content="{{ property.description|truncatechars:150 }}" />
+  <meta name="keywords" content="Eastgate,Estates,Property,House,Flat,Apartment,Rent,London,North London,East London" />
+  {% if property.available == False %}<meta name="robots" content="noindex, follow" />{% endif %}
+
   <style>
-    #page {
-	  text-align: center;
-	  width: 100vw;
+	#page {
+	  padding: 20px 40px;
 	}
+	#page img {
+	  float: left;
+	  height: 400px;
+	}
+	#page p {
+	  font-size: 20px;
+	}
+	#desc {
+	  background-color: white;
+	  color: #287d4a;
+	  overflow: hidden;
+	  padding: 10px 20px;
+	}
+	@media screen and (max-width: 800px){
+	  #page {
+	    text-align: center;
+	  }
+	  #page img {
+	    float: none;
+		height: 300px;
+	  }
+	}
+	@media screen and (max-width: 500px){
+	  #page {
+	    padding: 20px;
+	  }
+	  #page img {
+	    height: auto;
+	    width: 90%;
+	  }
+	  #desc {
+	    padding: 10px;
+	  }
+    }
   </style>
 {% endblock %}
 
 {% block body %}
 
 <div id="page">
+  <a class="edn" href="/properties">&#8656; See all properties</a>
+  <br><br>
   {% if user.is_authenticated %}
-    <a href="edit">Edit</a>
-    <a href="delete">Delete</a>
+    <a class="edn" href="edit">Edit</a>
+    <a class="edn" href="delete">Delete</a>
+	<br><br>
   {% endif %}
-
-  <img src="{{ property.photo.url }}"></img>
-  <p>{{ property.description }}</p>
+  {% load static %}
+  <img src="{{ property.photo.url }}" alt="Picture of a property"></img>
+  <div id="desc">
+    {% if user.is_authenticated %}
+      <p>Property {% if property.available == False %}un{% endif %}available</p>
+    {% endif %}
+    <p>Monthly Rent: £{{ property.rent }}</p>
+    <p>{{ property.description }}</p>
+  </div>
 </div>
 {% endblock %}
 

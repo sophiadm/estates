@@ -14,11 +14,12 @@ def add(request):
         form = QandAForm(request.POST)
         if form.is_valid():
             faq = form.save(commit=False)
-            
-            if QandA.objects.filter(question=form.cleaned_data["question"]):
+
+            qexists = QandA.objects.filter(question=form.cleaned_data["question"])
+            if qexists:
                 return render(request, 'qandas/edit.html',
                               {'form': form,
-                               'msg':'That question has already benn asked <a href="/faqs#'+str(faq.pk)+'">here</a>'})
+                               'msg':'That question has already benn asked <a href="/faqs#'+str(qexists.pk)+'">here</a>'})
 
             faq.save()
             return redirect('/faqs/#' + str(faq.pk))
@@ -36,16 +37,11 @@ def edit(request, pk):
         form = QandAForm(request.POST, instance=faqs[0])
         if form.is_valid():
             faq = form.save(commit=False)
-
-            if faqs[0].question != newtitle and BlogPost.objects.filter(title=newtitle):
-                return render(request, 'qandas/edit.html',
-                              {'form': form,
-                               'msg':'That question has already benn asked <a href="/faqs#'+str(faq.pk)+'">here</a>'})
             
             faq.save()
             return redirect('/faqs/#' + str(faq.pk))
     else:
-        form = ReviewForm(instance=faqs[0])
+        form = QandAForm(instance=faqs[0])
         
     return render(request, 'qandas/edit.html', {'form': form})
 
