@@ -114,7 +114,9 @@
 	{% endif %}
   </header>
   <div id="container">
-    <a id="new" href="new" class="edn">New post</a>
+    {% if user.is_authenticated %}
+      <a id="new" href="new" class="edn">New post</a>
+	{% endif %}
     {% for page in posts %}
       <button class="pgno edn"></button>
       {% for post in page %}
@@ -127,6 +129,8 @@
 	      <p>{{ post.description }}</p>
         </div>
       {% endfor %}
+	{% empty %}
+	  <p>No posts have been created yet</p>
     {% endfor %}
   </div>
 {% endblock %}

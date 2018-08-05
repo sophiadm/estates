@@ -38,7 +38,9 @@
 	  {% endif %}	   
 	  <p class="question">{{ faq.question }}</p>
 	  <p>{{ faq.answer }}</p>
-	</div>	  
+	</div>	 
+  {% empty %}
+    <p>No frequently asked questions have been added yet</p> 
   {% endfor %}
 {% endblock %}
 

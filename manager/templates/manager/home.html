@@ -4,33 +4,6 @@
   <title>Eastgate Estates | Home</title>
   <meta name="description" content="A leading supplier of property for rent in North and East London, we are committed to providing an excellent service to our tenant clients." />
   <meta name="keywords" content="Home,Eastgate,Estates,Property,House,Flat,Apartment,Rent,London,North London,East London"/>
-  <!--	#boxes-container {
-	  left: 10%;
-	  height: calc(100vh - 140px);
-	  position: absolute;
-	  width: 80%;
-	}
-	#boxes-container img{
-      height: 80%;
-	  position: absolute;
-	  top: 10%;
-	  width: calc(60vh - 84px); //this is default height to width, just trust
-	}
-	#boxes-container > div {
-	  color: white;
-	  height: 80%;
-	  position: absolute;
-	  right: 0px;
-	  top: 10%;
-	  width: calc(100% - 60vh + 54px);
-	}
-	#boxes-container > div div{
-	  height: calc(50% - 30px);
-	  margin-bottom: 20px;
-	  overflow: hidden;
-	  padding: 10px;
-	}
--->
   {% load static %}
   <style> 	
     #title { 
@@ -103,21 +76,32 @@
     <img id="keys" src="{% static "images/keys1.png" %}" alt="house"></img>
     <p>Big enough to cope, small enough to care</p>
   </div>
+  
   <div id="info-container">
 	{% if property == "no props" %}
-	  <a class="infobox">
-	    <p>Random description of the company</p>
+	  <a class="infobox" href="/about/#whoarewe">
+        <h3>Who are we?</h1>
+	    <p>Eastgate Estates was established nearly forty years ago. 
+          The company, based in Northumberland Park, owns, manages and maintains a wide range of individual properties available for rent
+          across North and East London. Our friendly team is ‘big enough to cope, small enough to care’...
+        </p>
 	{% else %}
 	  <a class="infobox" href="/properties/{{ property.pk }}">
 	    <p>Our newest available property</p>
 	    <img src="{{ property.image.url }}" alt="photo of house"></img>
 	    <p>{{ property.description|truncatechars:300 }}</p>
-	  {% endif %}
+	{% endif %}
 	</a>
-    <a class="infobox" href="/blog/{{ blog.url }}">
-	  <p>Check out our latest news article:</p>
-	  <h3>{{ blog.title }}</h3>
-	  <p>{{ bloginfo }}</p>
+	
+	{% if blogpost == "no blogs" %}
+      <a class="infobox" href="/blog">
+	    <p>We don't have any news articles yet, please check back soon!</p>
+    {% else %}
+      <a class="infobox" href="/blog/{{ blog.url }}">
+	    <p>Check out our latest news article:</p>
+	    <h3>{{ blog.title }}</h3>
+	    <p>{{ bloginfo }}</p>
+	{% endif %}
 	</a>
   </div>
 {% endblock %}
