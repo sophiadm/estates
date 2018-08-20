@@ -22,7 +22,10 @@ def add(request):
 
 @login_required
 def edit(request, pk):
-    reviews = Review.objects.filter(pk=pk)
+    try:
+        reviews = Review.objects.filter(pk=pk)
+    except ValueError:
+        reviews = False
     if not reviews:
         return render(request, 'manager/error.html', {'msg': "The review you're looking for doesn't exist"})
 

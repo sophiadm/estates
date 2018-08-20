@@ -29,7 +29,10 @@ def add(request):
 
 @login_required
 def edit(request, pk):
-    faqs = QandA.objects.filter(pk=pk)
+    try:
+        faqs = QandA.objects.filter(pk=pk)
+    except ValueError:
+        faqs = False
     if not faqs:
         return render(request, 'manager/error.html', {'msg': "The faq you're looking for doesn't exist"})
 

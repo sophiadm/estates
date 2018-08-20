@@ -10,6 +10,7 @@ def home(request):
         description = blogpost.info(300)
     else:
         blogpost = "no blogs"
+        description = ""
     props = Property.objects.all().filter(available=True)
     if props:
         prop = props[0]
@@ -34,7 +35,7 @@ def contact(request):
                 'Automated Eastgate Estates Website Enquiry',
                 mail['msg'],
                 mail['email'],
-                [''],
+                ['terry@eastgateresource.co.uk'],
                 fail_silently = False,
             )
             

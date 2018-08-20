@@ -13,7 +13,10 @@ def home(request):
     return render(request, 'properties/home.html', {'posts': posts})
     
 def see(request, pk):
-    posts = Property.objects.filter(pk=pk)
+    try:
+        posts = Property.objects.filter(pk=pk)
+    except ValueError:
+        posts = False
     if not posts:
         return render(request, 'manager/error.html', {'msg': "The property you're looking for doesn't exist"})
 

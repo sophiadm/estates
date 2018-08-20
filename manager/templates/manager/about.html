@@ -41,18 +41,27 @@
     background-color: white;
 	color: black;
   }
+  #whyus img {
+    height: 218px;
+  }
   #whatweoffer {
     background: linear-gradient(to left, #000000, #287d4a);	
 	color: white;
   }
+  #whatweoffer div {
+    display: flex;
+	justify-content: center;
+  }
   .but {
+    align-items: center;
     border: 2px solid white;
 	color: white;
-	display: block;
+	display: flex;
 	margin: 0 auto;
 	padding: 5px 10px;
 	text-decoration: none;
 	transition: 1s;
+	vertical-align: center;
 	width: 200px;
   }
   .but:hover {
@@ -110,7 +119,7 @@
     We develop and maintain all types of residential properties ranging from studio to three bed flats
     and we also have some large houses which are let as shared (HMO) accommodation.
     </p>
-  <img src="{% static "images/house2.png" %}"></img>
+    <img src="{% static "images/house2.png" %}"></img>
   </section>
   <section id="whyus">
     <h1>Why rent from us</h1>
@@ -120,8 +129,10 @@
 	and makes dealing with Eastgate such a pleasure. We know that things happen from time to time and of course,
 	we are measured on how we respond to matters as they arise. Our own in-house maintenance team is available throughout the week
 	and will respond to any situation in order of priority.
+	We are also members of the property redress scheme.
     </p>
-  <img src="{% static "images/house3.jpg" %}"></img>
+    <a href="https://www.theprs.co.uk/home/Index"><img src="{% static "images/Property-Redress-Scheme.png" %}" alt="Property redress scheme logo" /></a>
+    <img src="{% static "images/house3.jpg" %}"></img>
   </section>
   <section id="whatweoffer">
     <h1>What we offer</h1>
@@ -130,7 +141,10 @@
 	for easy access to London’s extensive transport network, perfect for travelling across town for work and pleasure.
 	Each individual property is allocated into an ongoing, planned maintenance programme designed to maintain the condition of your London home.
     </p>
-  <a href="/reviews" class="but">Reviews and testimonials of our service from past customers</a>
+	<div>
+      <a href="https://www.gov.uk/private-renting-tenancy-agreements" class="but">An overview of tenancy agreements</a>
+      <a href="/reviews" class="but">Reviews and testimonials of our service from past customers</a>
+	</div>
   </section>
 {% endblock %}
 
