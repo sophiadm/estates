@@ -12,6 +12,9 @@ class Property(models.Model):
     def __str__(self):
         return self.pk
 
+    def get_absolute_url(self):
+        return '/properties/' + str(self.pk)
+
 class Review(models.Model):
     name = models.CharField(max_length=50)
     content = models.TextField()
@@ -52,5 +55,9 @@ class BlogPost(models.Model):
                 return self.description + ' || ' + self.content[:chars - length - 3] + '...' 
             except IndexError:
                 return self.description + ' || ' + self.content
+
+    def get_absolute_url(self):
+        return '/blog/' + self.url()
+
             
 

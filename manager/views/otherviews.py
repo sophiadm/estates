@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from ..models import BlogPost, Property
 from django.core.mail import send_mail
 from ..forms import EmailForm
+
 def home(request):
     blogposts = BlogPost.objects.all()
     if blogposts:

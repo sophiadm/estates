@@ -1,13 +1,21 @@
 ﻿{% extends 'manager/base.html' %}
 
 {% block head %}
-  <title>Something went wrong</title>
+  <title>Eastgate Estates</title>
   <meta name="robots" content="noindex,follow"/>
 
+  <style>
+    body {
+	  background-color: white;
+	  color: black;
+	  font-size: 20px;
+      text-align: center;
+    }
+  </style>
 {% endblock %}
 
 {% block body %}
-<br>
+  <br>
   <div>
     <p>{{ msg }}</p>
     <a class='linkhome' href="/">Click here to return home</a>

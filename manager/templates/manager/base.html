@@ -8,7 +8,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <html lang="en"/>
+  <html lang="en"/>  
+  {% load staticfiles %}
+  <link rel="shortcut icon" href="{% static 'images/favicon.png'  %}" />
+
   <style>
     body {
 	  background-color: black;
@@ -38,6 +41,7 @@
 	#navbar .navlink {
 	  color: white;
 	  float: left;
+	  font-size: 16px;
 	  height: 18px;
 	  padding: 10px;
 	  text-decoration: none;
@@ -190,7 +194,7 @@
 	  <a class="footlink" href="/login">Log in</a>
     {% endif %}
 
-    <p>A division of Eastgate Investment Corporation Ltd</p><!--&#9400;-->
+    <p>A division of Eastgate Investment Corporation Ltd</p>
 	<p>Eastgate House, 70 Willoughby Lane, London, N17 OSP</p>
 	<p>Tel: 020 8801 7000, Fax: 020 8801 9999, Email: terry@eastgateresource.co.uk</p>
 	<p id="copyright">&#9400; Eastgate Investment Corporation Ltd</p>
