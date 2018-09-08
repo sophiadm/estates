@@ -83,7 +83,7 @@
   <div id="container">
     {% for prop in posts %}
       <div class="postbox">
-        <a class="img-link" href="{{ prop.pk }}"><img src="{{ prop.photo.url }}"</img></a>
+        <a class="img-link" href="{{ prop.pk }}"><img src="{{ prop.photo.url }}" alt="Available property"</img></a>
         <p>Monthly Rent: £{{ prop.rent }}{% if user.is_authenticated %} | Property available: {{ prop.available }}{% endif %}
         {% if user.is_authenticated %}
 		  <span><br></span>

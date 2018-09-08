@@ -4,6 +4,43 @@
   <title>Eastgate Estates | Home</title>
   <meta name="description" content="A leading supplier of property for rent in North and East London, we are committed to providing an excellent service to our tenant clients." />
   <meta name="keywords" content="Home,Eastgate,Estates,Property,House,Flat,Apartment,Rent,London,North London,East London"/>
+  <meta name="google-site-verification" content="4KHSK5sXaXfiiJd7HFYKky_3tMiH2f7QLdQpU2h04x8" />
+  <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "http://www.eastgate-estates.co.uk",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Eastgate House, 70 Willoughby Lane",
+    "addressLocality": "London",
+    "postalCode": "N17 0SP",
+    "addressCountry": "UK"
+  },
+  "url": "http://www.eastgate-estates.co.uk",
+  "name": "Eastgate Investment Corporation ltd",
+  "telephone": "02088017000",
+  "review": {
+    "@type": "Review",
+    "url": "https://www.192.com/atoz/business/london-n17/estate-management-services/eastgate-estates/b02de9cc2ba6ac29b131e8627dc8051ffa7228af/ml/",
+    "author": {
+      "@type": "Person",
+      "name": "Peter Peplow",
+    },
+    "datePublished": "2015-03-04T19:14",
+    "description": "found a decent deal here, seems like its run by just a few people but all went fine",
+    "inLanguage": "en",
+    "reviewRating": {
+      "@type": "Rating",
+      "worstRating": 4,
+      "bestRating": 4,
+      "ratingValue": 4
+    }
+  }
+
+}
+  </script>
+
   {% load static %}
   <style> 	
     #title { 
@@ -88,7 +125,7 @@
 	{% else %}
 	  <a class="infobox" href="/properties/{{ property.pk }}">
 	    <p>Our newest available property</p>
-	    <img src="{{ property.image.url }}" alt="photo of house"></img>
+	    <img src="{{ property.image.url }}" alt="Property"></img>
 	    <p>{{ property.description|truncatechars:300 }}</p>
 	{% endif %}
 	</a>

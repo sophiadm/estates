@@ -10,6 +10,9 @@
 	  padding-top: 10px;
 	  text-align: center;
 	}
+	p {
+	  text-align: center;
+	}
 	.reviewbox {
 	  background-color: white;
 	  color: black;
@@ -17,6 +20,9 @@
 	  margin-left: 20px;
 	  padding: 10px 20px;
 	  width: calc(100% - 80px);
+	}
+	.reviewbox p {
+	  text-align: left;
 	}
 	.reviewbox .edn {
 	  border-color: black;
@@ -50,8 +56,9 @@
 	</div>
 	<br>
   {% empty %}
-    <p>Sorry, there are no reviews added yet</p>
-  {% endfor %}	
+    <p>Sorry, no reviews have been uploaded yet</p>
+  {% endfor %}
+  <p>You can also view our reviews from <a target="_blank" href="https://www.192.com/atoz/business/london-n17/estate-management-services/eastgate-estates/b02de9cc2ba6ac29b131e8627dc8051ffa7228af/ml/">www.192.com</a></p>
 {% endblock %}
 
 {% block script %}

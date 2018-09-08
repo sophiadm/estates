@@ -4,6 +4,14 @@
   <title>Eastgate Estates | {{ post.title }}</title>
   <meta name="description" content="{{ post.description }}" />
   <meta name="keywords" content="Eastgate,Estates,Property,Rent,London,North London,East London" />
+  <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "headline": "{{ post.title }}",
+  "description": "{{ post.description }}"
+}
+  </script>
   <style>
     #page {
 	  background-color: white;

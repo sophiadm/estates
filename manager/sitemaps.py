@@ -7,7 +7,11 @@ class StaticSiteMap(Sitemap):
     changefreq = 'weekly'
 
     def items(self):
-        return ['home', 'about', 'blog', 'faqs', 'reviews', 'contact']
+        mylist = ['home', 'about', 'blog', 'faqs', 'reviews', 'contact']
+        if [1 for p in Property.objects.all() if p.available]:
+            mylist.append('propertyhome')
+            
+        return mylist
 
     def location(self, item):
         return reverse(item)
